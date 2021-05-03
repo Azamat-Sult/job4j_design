@@ -72,13 +72,15 @@ public class SimpleArrayTest {
     public void whenHasNext() {
         SimpleArray sArr = new SimpleArray(1);
         sArr.add("first");
-        assertTrue(sArr.iterator().hasNext());
+        Iterator sArrIt = sArr.iterator();
+        assertTrue(sArrIt.hasNext());
     }
 
     @Test
     public void whenEmpty() {
         SimpleArray sArr = new SimpleArray(1);
-        assertFalse(sArr.iterator().hasNext());
+        Iterator sArrIt = sArr.iterator();
+        assertFalse(sArrIt.hasNext());
     }
 
     @Test
@@ -86,13 +88,15 @@ public class SimpleArrayTest {
         SimpleArray sArr = new SimpleArray(2);
         sArr.add("first");
         sArr.add("second");
-        assertThat(sArr.iterator().next(), is("first"));
-        assertThat(sArr.iterator().next(), is("second"));
+        Iterator sArrIt = sArr.iterator();
+        assertThat(sArrIt.next(), is("first"));
+        assertThat(sArrIt.next(), is("second"));
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenEmptyThenNextException() {
         SimpleArray sArr = new SimpleArray(1);
-        assertThat(sArr.iterator().next(), is("Exception"));
+        Iterator sArrIt = sArr.iterator();
+        assertThat(sArrIt.next(), is("Exception"));
     }
 }

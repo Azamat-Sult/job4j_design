@@ -7,7 +7,6 @@ import java.util.Objects;
 public class SimpleArray<T> implements Iterable<T> {
     private T[] data;
     private int size = 0;
-    private int cursor = 0;
 
     public SimpleArray(int length) {
         this.data = (T[]) new Object[length];
@@ -28,7 +27,7 @@ public class SimpleArray<T> implements Iterable<T> {
         if (index != size - 1) {
             System.arraycopy(data, index + 1, data, index, size - index - 1);
         }
-        size--;
+        data[--size] = null;
     }
 
     public T get(int index) {
@@ -42,6 +41,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     private class SimpleArrayIterator implements Iterator<T> {
+        private int cursor = 0;
 
         @Override
         public boolean hasNext() {
