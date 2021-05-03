@@ -2,6 +2,7 @@ package ru.job4j.generics;
 
 import org.junit.Test;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -98,5 +99,14 @@ public class SimpleArrayTest {
         SimpleArray sArr = new SimpleArray(1);
         Iterator sArrIt = sArr.iterator();
         assertThat(sArrIt.next(), is("Exception"));
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void whenCorruptedIt() {
+        SimpleArray sArr = new SimpleArray(2);
+        sArr.add("first");
+        Iterator sArrIt = sArr.iterator();
+        sArr.add("second");
+        sArrIt.next();
     }
 }
