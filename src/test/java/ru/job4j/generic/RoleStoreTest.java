@@ -3,8 +3,7 @@ package ru.job4j.generic;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class RoleStoreTest {
 
@@ -33,5 +32,35 @@ public class RoleStoreTest {
         roleStore.add(role1);
         roleStore.delete("first");
         assertNull(roleStore.findById("first"));
+    }
+
+    @Test
+    public void whenReplaceNonExistThenFalse() {
+        RoleStore roleStore = new RoleStore();
+        Role role = new Role("second", "Tester");
+        assertFalse(roleStore.replace("first", role));
+    }
+
+    @Test
+    public void whenReplaceExistElementThenTrue() {
+        RoleStore roleStore = new RoleStore();
+        Role role1 = new Role("first", "admin");
+        Role role2 = new Role("second", "tester");
+        roleStore.add(role1);
+        assertTrue(roleStore.replace("first", role2));
+    }
+
+    @Test
+    public void whenRemoveNonExistElementThenFalse() {
+        RoleStore roleStore = new RoleStore();
+        assertFalse(roleStore.delete("first"));
+    }
+
+    @Test
+    public void whenRemoveExistElementThenTrue() {
+        RoleStore roleStore = new RoleStore();
+        Role user = new Role("first", "admin");
+        roleStore.add(user);
+        assertTrue(roleStore.delete("first"));
     }
 }

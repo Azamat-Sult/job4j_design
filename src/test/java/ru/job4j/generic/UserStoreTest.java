@@ -33,4 +33,34 @@ public class UserStoreTest {
         userStore.delete("first");
         assertNull(userStore.findById("first"));
     }
+
+    @Test
+    public void whenReplaceNonExistElementThenFalse() {
+        UserStore userStore = new UserStore();
+        User user = new User("second", "Ivan");
+        assertFalse(userStore.replace("first", user));
+    }
+
+    @Test
+    public void whenReplaceExistElementThenTrue() {
+        UserStore userStore = new UserStore();
+        User user1 = new User("first", "Azamat");
+        User user2 = new User("second", "Petr");
+        userStore.add(user1);
+        assertTrue(userStore.replace("first", user2));
+    }
+
+    @Test
+    public void whenRemoveNonExistElementThenFalse() {
+        UserStore userStore = new UserStore();
+        assertFalse(userStore.delete("first"));
+    }
+
+    @Test
+    public void whenRemoveExistElementThenTrue() {
+        UserStore userStore = new UserStore();
+        User user = new User("first", "Azamat");
+        userStore.add(user);
+        assertTrue(userStore.delete("first"));
+    }
 }
