@@ -1,21 +1,20 @@
 package ru.job4j.map;
 
-import ru.job4j.collection.SimpleArray;
-
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleHashMap<K, V> implements Iterable<K> {
+    private final double LOAD_FACTOR = 0.75;
     private int capacity = 2;
-    private final int incStepCapacity = 2;
     private Object[] keyContainer = new Object[capacity];
     private Object[] valContainer = new Object[capacity];
     private int size = 0;
     private int modCount = 0;
 
     public boolean insert(K key, V value) {
-        if (size >= capacity) {
+        if (size >= capacity * LOAD_FACTOR) {
             resizeContainers();
         }
 
@@ -41,12 +40,16 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public V get(K key) {
-        return (V) valContainer[getIndexOf(key)];
+        int index = getIndexOf(key);
+        if (keyContainer[index] != null && Objects.equals(keyContainer[index], key)) {
+            return (V) valContainer[index];
+        }
+        return null;
     }
 
     public boolean delete(K key) {
         int index = getIndexOf(key);
-        if (keyContainer[index] != null) {
+        if (keyContainer[index] != null && Objects.equals(keyContainer[index], key)) {
             keyContainer[index] = null;
             valContainer[index] = null;
             size--;
@@ -66,7 +69,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     private void resizeContainers() {
-        capacity += incStepCapacity;
+        capacity *= 2;
         Object[] keyContainerNew = new Object[capacity];
         Object[] valContainerNew = new Object[capacity];
         for (int index = 0; index < keyContainer.length; index++) {
