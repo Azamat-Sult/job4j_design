@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Analize {
+
     public Info diff(List<User> previous, List<User> current) {
         int addedCount = 0;
         int changedCount = 0;
@@ -26,7 +27,8 @@ public class Analize {
                     && !previousConvertedToMap.get(currentUser.id).equals(currentUser.name)) {
                 changedCount++;
             }
-            if (previous.contains(currentUser)) {
+            if (previousConvertedToMap.containsKey(currentUser.id)
+                    && previousConvertedToMap.get(currentUser.id).equals(currentUser.name)) {
                 notChangedCount++;
             }
         }
