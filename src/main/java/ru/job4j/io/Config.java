@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -24,17 +25,14 @@ public class Config {
             while ((line = in.readLine()) != null) {
                 if (!line.isBlank() && line.charAt(0) != '#') {
                     String[] lineSplitted = line.split("=");
-                    if (lineSplitted.length == 2 && !lineSplitted[0].isBlank()
-                            && !lineSplitted[1].isBlank()) {
-                        values.put(lineSplitted[0], lineSplitted[1]);
-                    } else {
+                    if (lineSplitted.length != 2 || lineSplitted[0].isBlank()
+                            || lineSplitted[1].isBlank()) {
                         throw new IllegalArgumentException();
                     }
+                    values.put(lineSplitted[0], lineSplitted[1]);
                 }
             }
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
