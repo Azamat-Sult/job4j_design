@@ -23,8 +23,12 @@ public class Analizy {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        saveResultsToFile(offLineLog, target);
+    }
+
+    public void saveResultsToFile(ArrayList<String> rsl, String target) {
         try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
-            for (String line : offLineLog) {
+            for (String line : rsl) {
                 out.println(line);
             }
         } catch (IOException e) {
