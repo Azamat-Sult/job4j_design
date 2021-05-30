@@ -16,7 +16,7 @@ public class SingleNumberTest {
 
     @Test
     public void test2() {
-        int[] nums = {4,1,2,1,2};
+        int[] nums = {4, 1, 2, 1, 2};
         SingleNumber sNum = new SingleNumber();
         assertThat(sNum.singleNumber(nums), is(4));
     }

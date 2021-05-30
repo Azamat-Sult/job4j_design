@@ -6,7 +6,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleHashMap<K, V> implements Iterable<K> {
-    private final double LOAD_FACTOR = 0.75;
+
+    private final static double LOAD_FACTOR = 0.75;
     private int capacity = 2;
     private Object[] keyContainer = new Object[capacity];
     private Object[] valContainer = new Object[capacity];

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class AnalizyTest {
 
     @Test
-    public void TestAnalyzeServer1() {
+    public void testAnalyzeServer1() {
         String source = "./data/server1.log";
         String dest = "./data/server1_analyzed.log";
         ArrayList<String> expectedLog = new ArrayList<>();
@@ -34,7 +34,7 @@ public class AnalizyTest {
     }
 
     @Test
-    public void TestAnalyzeServer2() {
+    public void testAnalyzeServer2() {
         String source = "./data/server2.log";
         String dest = "./data/server2_analyzed.log";
         ArrayList<String> expectedLog = new ArrayList<>();
@@ -57,7 +57,7 @@ public class AnalizyTest {
     public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
-    public void TestAnalyzeServer1InTempFolder() throws IOException {
+    public void testAnalyzeServer1InTempFolder() throws IOException {
         File source = folder.newFile("source.txt");
         File target = folder.newFile("target.txt");
         try (PrintWriter out = new PrintWriter(source)) {
@@ -74,13 +74,13 @@ public class AnalizyTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        String expected = "10:57:01;10:59:01;" +
-                "11:01:02;11:02:02;";
+        String expected = "10:57:01;10:59:01;"
+                + "11:01:02;11:02:02;";
         assertThat(rsl.toString(), is(expected));
     }
 
     @Test
-    public void TestAnalyzeServer2InTempFolder() throws IOException {
+    public void testAnalyzeServer2InTempFolder() throws IOException {
         File source = folder.newFile("source.txt");
         File target = folder.newFile("target.txt");
         try (PrintWriter out = new PrintWriter(source)) {
