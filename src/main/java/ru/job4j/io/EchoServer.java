@@ -14,21 +14,25 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
-                    String request = null;
-                    String answerToClient = "HTTP/1.1 200 OK\r\n";
+                    String request = "";
                     while (!(str = in.readLine()).isEmpty()) {
-                        String[] lineSplit = str.split(" ");
-                        if (lineSplit[0].equals("GET")) {
+                        if (str.startsWith("GET /?")) {
+                            String[] lineSplit = str.split(" ");
                             String[] requestSplit = lineSplit[1].split("=");
                             request = requestSplit[1];
                         }
                         System.out.println(str);
                     }
                     System.out.println("---------------------------------------------");
-                    if (Objects.equals(request, "Bye")) {
-                        answerToClient = "HTTP/1.1 200 OK - SERVER is SHUTDOWN\r\n";
+                    String answerToClient = request;
+                    if (Objects.equals(request, "Exit")) {
+                        answerToClient = "SERVER is SHUTDOWN";
                         server.close();
                     }
+                    if (Objects.equals(request, "Hello")) {
+                        answerToClient = "Hello, dear friend!";
+                    }
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     out.write(answerToClient.getBytes());
                 }
             }
