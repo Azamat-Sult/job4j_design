@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<car wasInAccident="false" age="6" model="Logan">
+    <engine power="90" volumeLitres="1.6" numOfValves="8"/>
+    <equipments>
+        <equipment>Audio</equipment>
+        <equipment>Security alarm</equipment>
+    </equipments>
+</car>
