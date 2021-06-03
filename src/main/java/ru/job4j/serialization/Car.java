@@ -9,6 +9,9 @@ public class Car {
     private Engine engine;
     private String[] equipment;
 
+    public Car() {
+    }
+
     public Car(boolean wasInAccident, int age, String model, Engine engine, String... equipment) {
         this.wasInAccident = wasInAccident;
         this.age = age;

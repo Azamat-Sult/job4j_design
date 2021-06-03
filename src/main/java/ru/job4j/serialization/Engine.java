@@ -5,6 +5,9 @@ public class Engine {
     private double volumeLitres;
     private int numOfValves;
 
+    public Engine() {
+    }
+
     public Engine(int power, double volumeLitres, int numOfValves) {
         this.power = power;
         this.volumeLitres = volumeLitres;
