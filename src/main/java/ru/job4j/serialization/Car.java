@@ -20,6 +20,26 @@ public class Car {
         this.equipment = equipment;
     }
 
+    public boolean isWasInAccident() {
+        return wasInAccident;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public String[] getEquipment() {
+        return equipment;
+    }
+
     @Override
     public String toString() {
         return "Car{"

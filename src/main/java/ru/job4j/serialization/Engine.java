@@ -14,6 +14,18 @@ public class Engine {
         this.numOfValves = numOfValves;
     }
 
+    public int getPower() {
+        return power;
+    }
+
+    public double getVolumeLitres() {
+        return volumeLitres;
+    }
+
+    public int getNumOfValves() {
+        return numOfValves;
+    }
+
     @Override
     public String toString() {
         return "Engine{"
