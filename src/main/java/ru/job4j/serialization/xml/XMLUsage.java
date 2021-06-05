@@ -10,7 +10,7 @@ import java.io.StringWriter;
 public class XMLUsage {
     public static void main(String[] args) throws JAXBException {
         final CarXML car = new CarXML(false, 6, "Logan",
-                new EngineXML(90,1.6,8), "Audio", "Security alarm");
+                new EngineXML(90, 1.6, 8), "Audio", "Security alarm");
 
         JAXBContext context = JAXBContext.newInstance(CarXML.class);
         Marshaller marshaller = context.createMarshaller();

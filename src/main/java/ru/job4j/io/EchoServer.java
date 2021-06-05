@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class EchoServer {
+    /*@SuppressWarnings("checkstyle:InnerAssignment")
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
@@ -32,5 +33,5 @@ public class EchoServer {
             }
             System.out.println("SERVER is SHUTDOWN");
         }
-    }
+    }*/
 }
