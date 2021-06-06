@@ -1,0 +1,7 @@
+create table Cars(
+	id serial primary key,
+	model varchar(255),
+	age integer,
+	num text,
+	wasInAccident boolean
+);

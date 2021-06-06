@@ -1,0 +1,1 @@
+insert into Cars(model, age, num, wasInAccident) values('Logan', 6, 'x999xx102rus', false);
