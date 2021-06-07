@@ -8,11 +8,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Find {
     private String findInRootDir;
-    private String findThis;
-    private String findType;
     private String fileToSaveRsl;
     private Predicate<Path> findCondition;
 
@@ -28,21 +28,30 @@ public class Find {
         ArgsName findArgs = ArgsName.of(arguments);
 
         this.findInRootDir = findArgs.get("d");
-        this.findType = findArgs.get("t");
-        this.findThis = (findType.equals("mask")) ? findArgs.get("n").substring(1) : findArgs.get("n");
+        String findType = findArgs.get("t");
+        String findThis = (findType.equals("mask")) ? findArgs.get("n")
+                .replaceAll("\\.", "\\\\.")
+                .replaceAll("\\*", "\\.*")
+                .replaceAll("\\?", ".") : findArgs.get("n");
         this.fileToSaveRsl = findArgs.get("o");
+        this.findCondition = getFindCondition(findType, findThis);
+    }
 
-        if (findType.equals("mask")) {
-            this.findCondition = p -> p.toFile().getName().endsWith(findThis);
-        }
+    private Predicate<Path> getFindCondition(String findType, String findThis) {
+        Predicate<Path> rsl = null;
 
         if (findType.equals("name")) {
-            this.findCondition = p -> p.toFile().getName().equals(findThis);
+            rsl = p -> p.toFile().getName().equals(findThis);
         }
 
-        if (findType.equals("regex")) {
-            this.findCondition = p -> p.toFile().getName().contains(findThis);
+        if (findType.equals("mask") || findType.equals("regex")) {
+            rsl = p -> {
+                Pattern pattern = Pattern.compile(findThis);
+                Matcher matcher = pattern.matcher(p.toFile().getName());
+                return matcher.find();
+            };
         }
+        return rsl;
     }
 
     private List<Path> find(String dirPath, Predicate<Path> predicate) {
