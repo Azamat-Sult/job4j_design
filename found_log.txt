@@ -1,0 +1,8 @@
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.AnalizeTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.DeleteFirstLinkedTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.ForwardLinkedTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.list.SimpleLinkedListTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.set.SimpleSetTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.SimpleArrayTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.SimpleQueueTest.txt
+C:\Projects\job4j_design\target\surefire-reports\ru.job4j.collection.SimpleStackTest.txt
