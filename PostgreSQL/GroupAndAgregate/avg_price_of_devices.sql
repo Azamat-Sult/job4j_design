@@ -1,0 +1,1 @@
+select avg(price) as "Average price of all devices" from devices;
