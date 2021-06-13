@@ -1,0 +1,1 @@
+select * from departments as d left join emploees as e on d.id = e.departments_id where e.id is null;;
