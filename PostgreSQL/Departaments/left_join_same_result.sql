@@ -1,0 +1,1 @@
+select d.name, e.name from departments as d left join emploees as e on d.id = e.departments_id where d.name = 'Finance department';
