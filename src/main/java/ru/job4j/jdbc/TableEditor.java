@@ -95,7 +95,7 @@ public class TableEditor implements AutoCloseable {
     public static void main(String[] args) {
 
         Properties props = new Properties();
-        File propsFile = new File("src/main/java/ru/job4j/jdbc/app.properties");
+        File propsFile = new File("src/main/resources/TableEditor.properties");
         try {
             props.load(new FileReader(propsFile));
         } catch (IOException e) {
