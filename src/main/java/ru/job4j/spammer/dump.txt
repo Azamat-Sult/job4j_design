@@ -1,0 +1,4 @@
+Petr Arsentev;parsentev@yandex.ru;
+Ivan Ivanov;iivanov@gmail.com;
+Sidor Sidorov;ss_spam@yahoo.com;
+John Smith;agent1@matrix.com;
