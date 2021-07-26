@@ -13,8 +13,9 @@ public abstract class AbstractCache<K, V> {
     }
 
     public V get(K key) {
-        SoftReference<V> softRefRsl = cache.get(key);
-        return softRefRsl != null ? softRefRsl.get() : load(key);
+        SoftReference<V> softRsl = cache.get(key);
+        V rsl = softRsl != null ? softRsl.get() : null;
+        return rsl != null ? rsl : load(key);
     }
 
     protected abstract V load(K key);
