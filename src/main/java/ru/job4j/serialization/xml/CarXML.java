@@ -1,7 +1,5 @@
 package ru.job4j.serialization.xml;
 
-import ru.job4j.serialization.Engine;
-
 import javax.xml.bind.annotation.*;
 import java.util.Arrays;
 
