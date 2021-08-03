@@ -2,11 +2,12 @@ package ru.job4j.design.srp;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
 
+import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -27,9 +28,8 @@ public class ReportEngineJSONTest {
         String json = engineJSON.generate(em -> true);
 
         Gson gson = new GsonBuilder().create();
-        List<Employee> expected = json.lines()
-                .map(line -> gson.fromJson(line, Employee.class))
-                .collect(Collectors.toList());
+        Type collectionType = new TypeToken<List<Employee>>() { }.getType();
+        List<Employee> expected = gson.fromJson(json, collectionType);
 
         assertThat(expected.get(0).getName(), is(worker1.getName()));
         assertThat(expected.get(0).getHired().getTime().toString(), is(worker1.getHired().getTime().toString()));

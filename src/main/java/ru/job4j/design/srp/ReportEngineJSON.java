@@ -2,11 +2,12 @@ package ru.job4j.design.srp;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class ReportEngineJSON implements Report {
 
@@ -18,13 +19,8 @@ public class ReportEngineJSON implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        StringBuilder rsl = new StringBuilder();
         Gson gson = new GsonBuilder().create();
-        for (Employee employee : store.findBy(filter)) {
-            rsl.append(gson.toJson(employee))
-                    .append(System.lineSeparator());
-        }
-        return rsl.toString();
+        return gson.toJson(store.findBy(filter));
     }
 
     public static void main(String[] args) {
@@ -41,9 +37,8 @@ public class ReportEngineJSON implements Report {
         System.out.println(json);
 
         Gson gson = new GsonBuilder().create();
-        List<Employee> expected = json.lines()
-                .map(line -> gson.fromJson(line, Employee.class))
-                .collect(Collectors.toList());
+        Type collectionType = new TypeToken<List<Employee>>() { }.getType();
+        List<Employee> expected = gson.fromJson(json, collectionType);
 
         for (Employee emp : expected) {
             System.out.println(emp);
