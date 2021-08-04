@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Food implements Item {
     private String name;
-    private LocalDate createDate;
-    private LocalDate expiryDate;
+    private final LocalDate createDate;
+    private final LocalDate expiryDate;
     private double price;
     private int discountPercent;
 
@@ -31,16 +31,8 @@ public class Food implements Item {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
-    }
-
     public LocalDate getExpiryDate() {
         return expiryDate;
-    }
-
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
     }
 
     public double getPrice() {

@@ -13,6 +13,7 @@ public class ControlQualityTest {
 
     @Test
     public void whenSorted() {
+
         ArrayList<Item> goods = new ArrayList<>();
 
         Item sugar = new Food("Sugar", LocalDate.of(2021, Month.AUGUST, 1),
@@ -21,11 +22,11 @@ public class ControlQualityTest {
         Item butter = new Food("Butter", LocalDate.of(2021, Month.JULY, 3),
                 LocalDate.of(2021, Month.SEPTEMBER, 3), 120, 0);
 
-        Item milk = new Food("Milk", LocalDate.of(2021, Month.JULY, 4),
-                LocalDate.of(2021, Month.AUGUST, 4), 48, 0);
+        Item milk = new Food("Milk", LocalDate.of(2021, Month.JULY, 5),
+                LocalDate.of(2021, Month.AUGUST, 5), 48, 0);
 
-        Item bread = new Food("Bread", LocalDate.of(2021, Month.AUGUST, 1),
-                LocalDate.of(2021, Month.AUGUST, 2), 24, 0);
+        Item bread = new Food("Bread", LocalDate.of(2021, Month.AUGUST, 3),
+                LocalDate.of(2021, Month.AUGUST, 4), 24, 0);
 
 
         goods.add(sugar);
@@ -33,12 +34,18 @@ public class ControlQualityTest {
         goods.add(milk);
         goods.add(bread);
 
-        IStore warehouse = new Store();
-        IStore shop = new Store();
-        IStore trash = new Store();
+        ArrayList<Store> stores = new ArrayList<>();
 
-        ControlQuality depCQ = new ControlQuality(goods, warehouse, shop, trash);
-        depCQ.sortGoods(75, 25, 30);
+        Store warehouse = new Warehouse();
+        Store shop = new Shop();
+        Store trash = new Trash();
+
+        stores.add(warehouse);
+        stores.add(shop);
+        stores.add(trash);
+
+        ControlQuality depCQ = new ControlQuality(goods, stores);
+        depCQ.sortGoods();
 
         assertThat(warehouse.getItem(0), is(sugar));
 
