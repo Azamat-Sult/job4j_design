@@ -21,4 +21,13 @@ public class ControlQuality {
             }
         }
     }
+
+    public void reSortGoods() {
+        goods.clear();
+        for (Store store : stores) {
+            goods.addAll(store.getAllItems());
+            store.clearStore();
+        }
+        sortGoods();
+    }
 }

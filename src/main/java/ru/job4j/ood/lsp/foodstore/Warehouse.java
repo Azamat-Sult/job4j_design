@@ -28,6 +28,16 @@ public class Warehouse implements Store {
     }
 
     @Override
+    public List<Item> getAllItems() {
+        return store;
+    }
+
+    @Override
+    public void clearStore() {
+        store.clear();
+    }
+
+    @Override
     public void getReport() {
         for (int index = 0; index < store.size(); index++) {
             System.out.println("index: " + index + " , item: " + store.get(index));
